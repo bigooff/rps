@@ -28,23 +28,27 @@ function computerSelection(){
         return 0;
     } else if ( pick == "paper"){
         return 1;
-    } else {
+    } else if ( pick == "scissors"){
         return 2;
+    } else {
+        return null;
     }
 
 };
 
 // TAKES USER INPUT AND OUTPUTS IN NUMBER
+// MAKE THIS ONE ACCEPT CASE SENSITIVE CHARACTERS *****
  
  function playerSelection(){
     const playerChoice = prompt("please make a choice");
-     if(playerChoice == "rock"){
+
+     if(playerChoice.toLowerCase() === "rock".toLowerCase()){
         console.log("player pick r")
        return 0;
-    } else if (playerChoice == "paper"){
+    } else if (playerChoice.toLowerCase() === "paper".toLowerCase()){
         console.log("player pick pap")
         return 1;
-    } else if(playerChoice == "scissors") {
+    } else if(playerChoice.toLowerCase() === "scissors".toLowerCase()) {
         console.log("player scissors")
          return 2;
     } else{
@@ -55,7 +59,6 @@ function computerSelection(){
   // ROUND PLAYER
 
 
-playRound();
 function playRound(){
     let a = playerSelection();
     let b = computerSelection();
@@ -63,18 +66,21 @@ function playRound(){
     console.log(b);
 
         if(a == b){
-            console.log("Its a tie ! amazing");
-        } else if((a == 0) && (b != (0 || 1))){
-            console.log("Player Wins With Rock!");
-        } else if((a == 1) && (b != (1 || 2))){
-            console.log("Player Wins With Paper!");
-        } else if((a == 2) && (b != (2 || 0))){
-            console.log("Player Wins With Scissors");
+            return "Its a tie ! amazing";
+        } else if((a === 0) && (b !==(0 && 1))){
+            return "Player Wins With Rock!";
+        } else if((a === 1) && (b != (1 && 2))){
+            return "Player Wins With Paper!";
+        } else if((a === 2) && (b != (2 && 0))){
+            return "Player Wins With Scissors";
         } else {
-            console.log("You lost My fRiend");
+            return "You lost My fRiend";
         }
 };
 
-// ROUND SYSTEM TO BE IMPLEMENTED
+// ROUND SYSTEM TO BE IMPLEMENTEd
+game();
+function game(){
+    console.log(playRound());
 
-
+}
