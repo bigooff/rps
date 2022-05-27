@@ -1,4 +1,5 @@
 // RANDOM CHOICE GENERATOR
+// REMOVE COMMENT TAGS FROM LOGS FOR MORE INFO
 
 function computerPlay(){
     const items = ["rock","paper","scissors"];
@@ -7,13 +8,13 @@ function computerPlay(){
     //console.log(items);
 
         if(choice === 0){
-            console.log("pc pick rock")
+            console.log("Computer pick rock")
             return items[0];  
         } else if(choice === 1){
-            console.log("pc pick Paper")
+            console.log("Computer pick Paper")
             return items[1];
         } else{
-            console.log("pc pick scissors")
+            console.log("Computer pick scissors")
             return items[2];    
         }
 }
@@ -26,12 +27,12 @@ function computerSelection(){
     const pick = computerPlay();
     //console.log(pick);
 
-    if(pick == "rock"){
-        return 0;
-    } else if ( pick == "paper"){
+    if(pick === "rock"){
         return 1;
-    } else if ( pick == "scissors"){
+    } else if ( pick ==="paper"){
         return 2;
+    } else if ( pick === "scissors"){
+        return 3;
     } else {
         return null;
     }
@@ -42,17 +43,17 @@ function computerSelection(){
 // MAKE THIS ONE ACCEPT CASE SENSITIVE CHARACTERS *****
  
  function playerSelection(){
-    const playerChoice = prompt("please make a choice");
+    const playerChoice = prompt("Please make a choice");
 
      if(playerChoice.toLowerCase() === "rock".toLowerCase()){
-        console.log("player pick rock")
-       return 0;
+        console.log("Player pick rock!")
+       return 1;
     } else if (playerChoice.toLowerCase() === "paper".toLowerCase()){
-        console.log("player pick pap")
-        return 1;
+        console.log("Player pick paper!")
+        return 2;
     } else if(playerChoice.toLowerCase() === "scissors".toLowerCase()) {
-        console.log("player scissors")
-         return 2;
+        console.log("Player pick scissors!")
+         return 3;
     } else{
         return null;
     }
@@ -69,11 +70,11 @@ function playRound(){
 
         if(a === b){
             return 0;   // tie
-        } else if((a === 0) && (b != 1)){
+        } else if((a === 1) && (b != 2)){
             return 1;   //rock
-        } else if((a === 1) && (b != 2)){    
+        } else if((a === 2) && (b != 3)){    
             return 2;   //paper
-        } else if((a === 2) && (b != 0)){
+        } else if((a === 3) && (b != 1)){
             return 3;   //scissors
         } else {
             return 4;   //lose
@@ -88,11 +89,11 @@ function playRound(){
 
 
 // IT MIGHT HAVE BEEN BETTTER TO JUST USE THE playRound() FUNCTION FOR THIS AND LOG FROM IN THERE
-// THIS COULD BE USELESS 
+ 
 
 function score(){
     const playerScore = playRound();
-    //console.log(playerScore);
+   // console.log(playerScore);
      if(playerScore === 0){
          console.log("Zero score points added because it is a tie!")
          return 0;
@@ -113,32 +114,26 @@ function score(){
 }
 
 
-
+// sends out the values: +1 if it is a win, -1 if it is lose, 0 if it is a tie
 
 function realScore(){
     let a = 0;
     let b = score();
-    if (b === (1 || 2 || 3)) {
+    //console.log(b);
+    if((b === 1) || (b === 2) || (b === 3)) {
         a = a + 1;
-       // console.log(a);
+        //console.log(a + " HERE HERE HERE")
         return a;
-    } else if (b === 0) {
-       // console.log(a);
+    } else if(b === 0) {
+       // console.log(a + " HERE HERE HERE")
         return a;
     } else if(b === 4){
         a = a - 1;
-        //console.log(a);
+        //console.log(a + " HERE HERE HERE")
         return a;
-    } 
-    console.log(a);
-    return a;
-
-}
-
-let finalNumber = 0;
-function final(){
-            finalNumber += realScore();
-        return finalNumber;
+    } else {
+        return null;
+    }
 }
 
 
@@ -146,40 +141,24 @@ function final(){
 
 
 
-// FIX LAST WINNER OR LOSER OUTPUT SOMETHING IS WRONG HERE
+
+// final code for winner or loser announcment
+
 game();
 function game(){
+    let finalNumber = 0;
     for(i = 0; i < 5; i++){
-    scoreCheck = final();
+
+    let scoreCheck = finalNumber += realScore();
     console.log(scoreCheck)
 
     if((scoreCheck > 0) && (i === 4)){
-        console.log("plz work u win plz");
+        console.log("YOU WIN FINALLY!!!!");
     } else if((scoreCheck < 0) && (i === 4)){
-        console.log("sad lose");
+        console.log("YOU LOSE MISERABLY");
     } else if((scoreCheck === 0) && (i === 4)) {
-        console.log("tie amazing ");
+        console.log("ITS A TIE AMAZING ");
     }
     }
 
 }
-    
-    
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-
-    //console.log("YOU LOSE MISERABLY ???");
-    //console.log("It is a tie how did u manage to do that");
-    //console.log("YOU FINALY WIN AMAZING !!!!!")};
