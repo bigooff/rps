@@ -3,8 +3,8 @@
 function computerPlay(){
     const items = ["rock","paper","scissors"];
     const choice = Math.floor((items.length * (Math.random(3))));
-    console.log(choice);
-    console.log(items);
+    //console.log(choice);
+    //console.log(items);
 
         if(choice === 0){
             console.log("pc pick rock")
@@ -24,7 +24,7 @@ function computerPlay(){
 
 function computerSelection(){
     const pick = computerPlay();
-    console.log(pick);
+    //console.log(pick);
 
     if(pick == "rock"){
         return 0;
@@ -114,32 +114,72 @@ function score(){
 
 
 
+
+function realScore(){
+    let a = 0;
+    let b = score();
+    if (b === (1 || 2 || 3)) {
+        a = a + 1;
+       // console.log(a);
+        return a;
+    } else if (b === 0) {
+       // console.log(a);
+        return a;
+    } else if(b === 4){
+        a = a - 1;
+        //console.log(a);
+        return a;
+    } 
+    console.log(a);
+    return a;
+
+}
+
+let finalNumber = 0;
+function final(){
+            finalNumber += realScore();
+        return finalNumber;
+}
+
+
+
+
+
+
 // FIX LAST WINNER OR LOSER OUTPUT SOMETHING IS WRONG HERE
-// EITHER THE VARIABLES a , b  OR THE IF STATEMENTS WRONG
 game();
 function game(){
-    
-    for(let i = 0; i < 5; i++){
-       let scoreCheck = score();
-       console.log(scoreCheck);
-       console.log(i);
-       let a = 1; //real score
-       let b = scoreCheck // real score
-       console.log(a);
-       console.log(b);
+    for(i = 0; i < 5; i++){
+    scoreCheck = final();
+    console.log(scoreCheck)
 
-        if(scoreCheck === (1 || 2 || 3)){
-            a = a++;
-            console.log(a);
-             if((i === 4) && (a > b)){
-            console.log("YOU FINALY WIN AMAZING !!!!!")};
-            } else if((scoreCheck === 0)){
-                console.log("It is a tie how did u manage to do that");
-            } else if((scoreCheck === 4)){
-               console.log(b);
-                if((i === 4)  && (a < b)){
-                console.log("YOU LOSE MISERABLY ???");
-                }
-            }
-        } 
+    if((scoreCheck > 0) && (i === 4)){
+        console.log("plz work u win plz");
+    } else if((scoreCheck < 0) && (i === 4)){
+        console.log("sad lose");
+    } else if((scoreCheck === 0) && (i === 4)) {
+        console.log("tie amazing ");
     }
+    }
+
+}
+    
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+    //console.log("YOU LOSE MISERABLY ???");
+    //console.log("It is a tie how did u manage to do that");
+    //console.log("YOU FINALY WIN AMAZING !!!!!")};
