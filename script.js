@@ -39,19 +39,24 @@ function computerSelection(){
 
 };
 
-// TAKES USER INPUT AND OUTPUTS IN NUMBER
-// MAKE THIS ONE ACCEPT CASE SENSITIVE CHARACTERS *****
- 
- function playerSelection(){
-    const playerChoice = prompt("Please make a choice");
-
-     if(playerChoice.toLowerCase() === "rock".toLowerCase()){
+// gets choice from buttons
+const choices = document.querySelectorAll("button");
+    console.log(choices)
+    for(let choice of choices){
+        choice.addEventListener("click", () => {
+                playerSelection(choice.textContent)
+        })
+    }
+    // TAKES USER INPUT AND OUTPUTS IN NUMBER
+ function playerSelection(choice){
+    
+     if(choice === "rock"){
         console.log("Player pick rock!")
        return 1;
-    } else if (playerChoice.toLowerCase() === "paper".toLowerCase()){
+    } else if (choice === "paper"){
         console.log("Player pick paper!")
         return 2;
-    } else if(playerChoice.toLowerCase() === "scissors".toLowerCase()) {
+    } else if(choice === "scissors") {
         console.log("Player pick scissors!")
          return 3;
     } else{
@@ -82,8 +87,18 @@ function playRound(){
 };
 
 
-
-
+function playWithButtons() {
+    buttonsChoice = [
+        rock = document.querySelector(".rock"),
+        paper = document.querySelector(".paper"),
+        scissors = document.querySelector(".scissors")
+    ];
+    for(let button of buttonsChoice){
+        button.addEventListener("click", playRound);
+    }
+    
+  
+}
 
 
 
@@ -143,22 +158,22 @@ function realScore(){
 
 
 // final code for winner or loser announcment
+// && (i === 4)
 
-game();
 function game(){
     let finalNumber = 0;
-    for(i = 0; i < 5; i++){
+    
 
     let scoreCheck = finalNumber += realScore();
     console.log(scoreCheck)
 
-    if((scoreCheck > 0) && (i === 4)){
+    if((scoreCheck > 0) ){
         console.log("YOU WIN FINALLY!!!!");
-    } else if((scoreCheck < 0) && (i === 4)){
+    } else if((scoreCheck < 0) ){
         console.log("YOU LOSE MISERABLY");
-    } else if((scoreCheck === 0) && (i === 4)) {
+    } else if((scoreCheck === 0) ) {
         console.log("ITS A TIE AMAZING ");
     }
-    }
+    
 
 }
