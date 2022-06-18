@@ -1,7 +1,5 @@
 // REMOVE COMMENT TAGS FROM LOGS FOR MORE INFO
-
-//NOTE TO SELF : VISUALIZE THE CONSOLE.LOGS IN THE HTML / ANNOUNCE WINNER AT END 
-// FIX THE SIXTH FUNCTION CALLBACK THAT HAPPENS WHEN 5 ROUNDS ARE PLAYED
+// RE WROTE FROM SCRATCH BY KEEPING THE BASIC LOGIC FROM THE OLD CODE
 
 
 // RANDOM CHOICE GENERATOR
@@ -23,143 +21,102 @@ function computerPlay(){
         }
 }
 
+// console.log(computerSelection())
 
-// GETS RANDOM CHOICE AND TRANSLATES IT TO NUMBER
-// CODE IS BASED ON NUMBERS I DONT KNOW IF IT COULD BE DONE WITH STRINGS
-
+// GETS RANDOM CHOICE FROM THE COMPUTER -- MIGHT BE USELESS // COULD HAVE TAKEN THE --
+//-- CHOICE DIRECTLY FROM THE COMPUTERPLAY() FUNCTION??
 function computerSelection(){
     const pick = computerPlay();
-    //console.log(pick);
+    // console.log(pick);
 
     if(pick === "rock"){
-        return 1;
+        return "rock";
     } else if ( pick ==="paper"){
-        return 2;
+        return "paper";
     } else if ( pick === "scissors"){
-        return 3;
+        return "scissors";
     } else {
         return null;
     }
 
 };
-
-
-
-// gets choice from buttons
-
-
-    const choices = document.querySelectorAll("button");
-       // console.log(choices)
+// GET EACH BUTTON AND PLAY THE GAME WHEN PRESSED
+const choices = document.querySelectorAll("button");
         for(let choice of choices){
-                  choice.addEventListener("click", () => {
-                    playRound(playerSelection(choice.textContent),computerSelection())})
-                }
+                  choice.addEventListener("click", game )}
+//GET THE CORRESPONDING "CHOICE" ACCORDING TO THE BUTTONS TEXT_CONTENT
+function getChoice(){
+    for(let choice of choices){
+        return choice.textContent}
+}
+// GETS PLAYERS CHOICE WITH THE HELP OF GETCHOICE FUNCTION
 
-    // TAKES USER INPUT AND OUTPUTS IN NUMBER
- function playerSelection(choice){
-    
+ function playerSelection(){
+    choice = getChoice();
      if(choice === "rock"){
         console.log("Player pick rock!")
-       return 1;
+       return "rock";
     } else if (choice === "paper"){
         console.log("Player pick paper!")
-        return 2;
+        return "paper";
     } else if(choice === "scissors") {
         console.log("Player pick scissors!")
-         return 3;
+         return "scissors";
     } else{
         return null;
     }
-  }; 
+  };        
 
-  // ROUND PLAYER
+
+
+    // ROUND PLAYER
 let playRoundCallCount = 0;
 
-function playRound(a , b){
-    // a = playerSelection
-    // b = computerSelection
-    console.log(a);
-    console.log(b);
+function playRound(){
+    let a = playerSelection();
+     let b = computerSelection();
+    // console.log(a);
+    // console.log(b);
     playRoundCallCount += 1;
-    console.log(playRoundCallCount)
+    console.log(playRoundCallCount+" ROUND")
         if(a === b){
             console.log("Zero score points added because it is a tie!")
             return 0;   // tie
-        } else if((a === 1) && (b != 2)){
+        } else if((a === "rock") && (b != "paper")){
             console.log("My friend 1 score point for you and your rock");
             return 1;   //rock
-        } else if((a === 2) && (b != 3)){  
+        } else if((a === "paper") && (b != "scissors")){  
             console.log("Thats right 1 score point for you for this paper");  
-            return 2;   //paper
-        } else if((a === 3) && (b != 1)){
+            return 1;   //paper
+        } else if((a === "scissors") && (b != "rock")){
             console.log("You know who it is the man the player 1 point for scissors");
-            return 3;   //scissors
+            return 1;   //scissors
         } else {
             console.log("Oh no you lose 1 point very bad stuff");
-            return 4;   //lose
+            return -1;   //lose
         }
 
 };
+//CALCULATES ROUND && SCORE -- OUTPUTS WINNER OR LOSER AFTER 5 ROUNDS
 
-
-//FOR EVERY BUTTON CLICKED CHECK IF THE ROUND = 5 / IF IT IS DISPLAY END SCORE // FIX THIS 
-for(let choice of choices){
-    choice.addEventListener("click", () => {
-        if(playRoundCallCount == 5){game(realScore())}
-      })
-  }
-
-
-
-// sends out the values: +1 if it is a win, -1 if it is lose, 0 if it is a tie
-
-function realScore(){
-    let a = 0;
-    let b = playRound();
-    //console.log(b);
-    if((b === 1) || (b === 2) || (b === 3)) {
-        a = a + 1;
-        //console.log(a + " HERE HERE HERE")
-        return a;
-    } else if(b === 0) {
-       // console.log(a + " HERE HERE HERE")
-        return a;
-    } else if(b === 4){
-        a = a - 1;
-        //console.log(a + " HERE HERE HERE")
-        return a;
-    } else {
-        return null;
-    }
-}
-
-
-
-
-
-
-
-// final code for winner or loser announcement
-// CHECK FOR CALLBACK MISTAKES IN CASE THIS FUNCTION CAUSES THE 6TH CALLBACK PROBLEM
-
-function game(score){
-
+let realScore = 0;
+function game(){
+    let round = playRoundCallCount;
+    let scoreToCalculate = playRound();
+    console.log(scoreToCalculate)
     
-
-
-    let finalNumber = 0;
+    realScore += scoreToCalculate;
     
-
-    let scoreCheck = finalNumber += score;
-    console.log(scoreCheck)
-
-    if((scoreCheck > 0) ){
-        console.log("YOU WIN FINALLY!!!!");
-    } else if((scoreCheck < 0) ){
-        console.log("YOU LOSE MISERABLY");
-    } else if((scoreCheck === 0) ) {
-        console.log("ITS A TIE AMAZING ");
-    }
-    
-
+    console.log(realScore +" SCORE")
+     if(round === 4){
+        if((realScore === 0)){
+            console.log("ITS A TIE AMAZING ");
+        } else if((realScore > 0)){
+            console.log("YOU WIN FINALLY!!!!")
+        } else if((realScore < 0)){
+            console.log("YOU LOSE MISERABLY")
+        }
+     }
+        
+   
 }
