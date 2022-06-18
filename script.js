@@ -1,11 +1,10 @@
-// RANDOM CHOICE GENERATOR
 // REMOVE COMMENT TAGS FROM LOGS FOR MORE INFO
 
+//NOTE TO SELF : VISUALIZE THE CONSOLE.LOGS IN THE HTML / ANNOUNCE WINNER AT END 
+// FIX THE SIXTH FUNCTION CALLBACK THAT HAPPENS WHEN 5 ROUNDS ARE PLAYED
 
 
-//NOTE TO SELF : IMPLEMENT THE EXECUTION OF THE GAME FUNCTION ACCORDING TO WHAT THE-
-// -PLAYERSELECTION FUNCTION RETURNS AFTER THE CLICK OF A BUTTON??? SEARCH GOOGLE ??
-
+// RANDOM CHOICE GENERATOR
 function computerPlay(){
     const items = ["rock","paper","scissors"];
     const choice = Math.floor((items.length * (Math.random(3))));
@@ -50,7 +49,7 @@ function computerSelection(){
 
 
     const choices = document.querySelectorAll("button");
-        console.log(choices)
+       // console.log(choices)
         for(let choice of choices){
                   choice.addEventListener("click", () => {
                     playRound(playerSelection(choice.textContent),computerSelection())})
@@ -82,7 +81,7 @@ function playRound(a , b){
     console.log(a);
     console.log(b);
     playRoundCallCount += 1;
-
+    console.log(playRoundCallCount)
         if(a === b){
             console.log("Zero score points added because it is a tie!")
             return 0;   // tie
@@ -100,12 +99,15 @@ function playRound(a , b){
             return 4;   //lose
         }
 
-        
 };
 
 
-
-
+//FOR EVERY BUTTON CLICKED CHECK IF THE ROUND = 5 / IF IT IS DISPLAY END SCORE // FIX THIS 
+for(let choice of choices){
+    choice.addEventListener("click", () => {
+        if(playRoundCallCount == 5){game(realScore())}
+      })
+  }
 
 
 
@@ -113,7 +115,7 @@ function playRound(a , b){
 
 function realScore(){
     let a = 0;
-    let b = score();
+    let b = playRound();
     //console.log(b);
     if((b === 1) || (b === 2) || (b === 3)) {
         a = a + 1;
@@ -137,14 +139,18 @@ function realScore(){
 
 
 
-// final code for winner or loser announcment
-// && (i === 4)
+// final code for winner or loser announcement
+// CHECK FOR CALLBACK MISTAKES IN CASE THIS FUNCTION CAUSES THE 6TH CALLBACK PROBLEM
 
-function game(){
+function game(score){
+
+    
+
+
     let finalNumber = 0;
     
 
-    let scoreCheck = finalNumber += realScore();
+    let scoreCheck = finalNumber += score;
     console.log(scoreCheck)
 
     if((scoreCheck > 0) ){
